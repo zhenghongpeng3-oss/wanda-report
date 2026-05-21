@@ -95,22 +95,28 @@
   .daily-calendar-cell.rest { background: rgba(66,153,225,0.5); }
   .calendar-hover-tooltip { position: fixed; display: none; pointer-events: none; z-index: 99999; padding: 8px 10px; background: rgba(255,255,255,0.60); color: #222; border: 1px solid rgba(0,0,0,0.14); border-radius: 6px; box-shadow: 0 8px 24px rgba(0,0,0,0.16); backdrop-filter: blur(8px); font-size: 12px; line-height: 1.55; white-space: nowrap; }
   .report-loading-overlay { position: fixed; inset: 0; z-index: 100000; display: flex; align-items: center; justify-content: center; padding: 24px; background: rgba(245,246,247,0.22); pointer-events: auto; }
-  .report-loading-card { width: min(480px, calc(100vw - 48px)); min-height: 196px; border-radius: 16px; background: rgba(255,255,255,0.50); border: 1px solid rgba(255,255,255,0.72); box-shadow: 0 18px 56px rgba(0,0,0,0.18); backdrop-filter: blur(10px); display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 14px; }
-  .report-loading-brand { position: relative; width: 100%; text-align: center; font-size: 28px; font-weight: 800; line-height: 1.25; letter-spacing: 0; color: rgba(32,36,42,0.16); }
-  .report-loading-brand-sweep { position: absolute; inset: 0; color: transparent; background: linear-gradient(90deg, rgba(32,36,42,0.16) 0%, #E60012 42%, #E60012 58%, rgba(32,36,42,0.16) 100%); background-size: 260% 100%; -webkit-background-clip: text; background-clip: text; animation: reportBrandSweep 1.8s ease-in-out infinite; }
-  .report-loading-wave { width: 250px; height: 28px; }
-  .report-loading-wave path { fill: none; stroke: #E60012; stroke-width: 4; stroke-linecap: round; stroke-dasharray: 86 210; animation: reportWaveFlow 1.8s ease-in-out infinite; }
-  .report-loading-ticks { display: flex; gap: 10px; }
-  .report-loading-ticks span { width: 16px; height: 6px; border-radius: 3px; background: #d8dde3; animation: reportLoadingTick 1.8s ease-in-out infinite; }
-  .report-loading-ticks span:nth-child(2) { animation-delay: 0.18s; }
-  .report-loading-ticks span:nth-child(3) { animation-delay: 0.36s; }
-  .report-loading-ticks span:nth-child(4) { animation-delay: 0.54s; }
-  .report-loading-ticks span:nth-child(5) { animation-delay: 0.72s; }
-  .report-loading-ticks span:nth-child(6) { animation-delay: 0.90s; }
-  .report-loading-text { font-size: 13px; color: #666; text-align: center; min-height: 18px; }
-  @keyframes reportBrandSweep { 0% { background-position: 120% 0; opacity: 0.35; } 45% { opacity: 1; } 100% { background-position: -120% 0; opacity: 0.35; } }
-  @keyframes reportWaveFlow { 0% { stroke-dashoffset: 0; } 100% { stroke-dashoffset: -296; } }
-  @keyframes reportLoadingTick { 0%,100% { background: #d8dde3; transform: translateY(0); } 50% { background: #E60012; transform: translateY(-4px); } }
+  .report-loading-card { position: relative; width: min(460px, calc(100vw - 48px)); min-height: 284px; border-radius: 10px; background: rgba(255,255,255,0.72); border: 1px solid rgba(255,255,255,0.92); box-shadow: 0 18px 56px rgba(0,0,0,0.16); backdrop-filter: blur(10px); overflow: hidden; padding: 36px 38px 32px; background-image: linear-gradient(#e2e5e9 1px, transparent 1px), linear-gradient(90deg, #e2e5e9 1px, transparent 1px); background-size: 80px 40px; background-position: -10px -2px; }
+  .report-loading-card::before { content: ''; position: absolute; top: 18px; bottom: 18px; left: 20px; width: 74px; border-radius: 6px; background: rgba(230,0,18,0.045); animation: reportLoadingScan 3.4s ease-in-out infinite; }
+  .report-loading-corner { position: absolute; width: 21px; height: 21px; pointer-events: none; }
+  .report-loading-corner.tl { left: 22px; top: 22px; border-left: 2px solid #E60012; border-top: 2px solid #E60012; }
+  .report-loading-corner.br { right: 22px; bottom: 22px; border-right: 2px solid #E60012; border-bottom: 2px solid #E60012; }
+  .report-loading-inner { position: relative; z-index: 1; }
+  .report-loading-meta { font-size: 11px; color: #8b929c; letter-spacing: 1.4px; margin-bottom: 12px; }
+  .report-loading-brand { font-size: 25px; font-weight: 780; line-height: 1.25; letter-spacing: 0; color: #252a31; margin-bottom: 18px; }
+  .report-loading-rail { position: relative; height: 1px; background: #d7dce2; margin-bottom: 30px; overflow: hidden; }
+  .report-loading-rail span { position: absolute; left: 0; top: -1px; width: 100%; height: 3px; border-radius: 999px; background: transparent; }
+  .report-loading-rail span::before { content: ''; position: absolute; inset: 0; background: #E60012; border-radius: 999px; transform: translateX(-100%); animation: reportLoadingRail 2.2s linear infinite; }
+  .report-loading-status-box { border: 1px solid #e5e9ee; border-radius: 6px; background: #fff; padding: 17px 22px; }
+  .report-loading-status-row { display: grid; grid-template-columns: 1fr auto; align-items: center; gap: 18px; min-height: 26px; color: #626a75; font-size: 9px; line-height: 1.2; }
+  .report-loading-status-row + .report-loading-status-row { margin-top: 7px; }
+  .report-loading-status-label { display: inline-flex; align-items: center; gap: 12px; }
+  .report-loading-status-label::before { content: ''; width: 5px; height: 5px; border-radius: 50%; background: #cbd1d8; animation: reportLoadingNode 1.8s ease-in-out infinite; flex: 0 0 auto; }
+  .report-loading-status-row:nth-child(2) .report-loading-status-label::before { animation-delay: 0.2s; }
+  .report-loading-status-row:nth-child(3) .report-loading-status-label::before { animation-delay: 0.4s; }
+  .report-loading-status-value { font-weight: 700; color: #626a75; white-space: nowrap; }
+  @keyframes reportLoadingRail { to { transform: translateX(100%); } }
+  @keyframes reportLoadingNode { 0%,100% { transform: scale(0.7); opacity: 0.35; } 50% { transform: scale(1); opacity: 0.9; } }
+  @keyframes reportLoadingScan { 0%,100% { transform: translateX(0); opacity: 0.10; } 50% { transform: translateX(344px); opacity: 0.45; } }
 
   /* 指标卡片 */
   .metrics-row { display: flex; gap: 12px; margin-bottom: 16px; flex-wrap: wrap; }
@@ -677,37 +683,64 @@ const REPORT_DATA_MODE = 'split';
 let allData = { north: {}, cities: {}, plazas: {}, city_companies: {}, period_range: {}, daily_benchmarks: {} };
 let plazaNames = [];
 let cityNames = [];
-const reportDataState = { manifest: null, loading: {} };
+const reportDataState = {
+  manifest: null,
+  loading: {},
+  progress: { northReady: false, loadedCities: 0, totalCities: 0, loadedPlazas: 0, totalPlazas: 0 },
+  bodyOverflow: ''
+};
 
-function setReportLoading(text) {
+function updateReportLoadingStatus() {
+  const progress = reportDataState.progress;
+  const north = document.getElementById('report-loading-north');
+  const cities = document.getElementById('report-loading-cities');
+  const plazas = document.getElementById('report-loading-plazas');
+  if (north) north.textContent = progress.northReady ? '已就绪' : '准备中';
+  if (cities) cities.textContent = progress.totalCities ? `${progress.loadedCities} / ${progress.totalCities}` : '准备中';
+  if (plazas) plazas.textContent = progress.totalPlazas ? `${progress.loadedPlazas} / ${progress.totalPlazas}` : '准备中';
+}
+
+function setReportLoading() {
   let el = document.getElementById('report-loading-state');
   if (!el) {
+    reportDataState.bodyOverflow = document.body.style.overflow || '';
+    document.body.style.overflow = 'hidden';
     el = document.createElement('div');
     el.id = 'report-loading-state';
     el.className = 'report-loading-overlay';
     el.innerHTML = `
       <div class="report-loading-card" role="status" aria-live="polite">
-        <div class="report-loading-brand">
-          <span>珠海万达商管北区</span>
-          <span class="report-loading-brand-sweep">珠海万达商管北区</span>
+        <div class="report-loading-corner tl"></div>
+        <div class="report-loading-corner br"></div>
+        <div class="report-loading-inner">
+          <div class="report-loading-meta">NORTH REGION DATA</div>
+          <div class="report-loading-brand">珠海万达商管北区</div>
+          <div class="report-loading-rail" aria-hidden="true"><span></span></div>
+          <div class="report-loading-status-box">
+            <div class="report-loading-status-row">
+              <span class="report-loading-status-label">首页核心数据</span>
+              <span class="report-loading-status-value" id="report-loading-north">准备中</span>
+            </div>
+            <div class="report-loading-status-row">
+              <span class="report-loading-status-label">城市公司数据</span>
+              <span class="report-loading-status-value" id="report-loading-cities">准备中</span>
+            </div>
+            <div class="report-loading-status-row">
+              <span class="report-loading-status-label">广场明细数据</span>
+              <span class="report-loading-status-value" id="report-loading-plazas">准备中</span>
+            </div>
+          </div>
         </div>
-        <svg class="report-loading-wave" viewBox="0 0 250 28" aria-hidden="true">
-          <path d="M10 15 C48 3, 76 27, 116 15 S172 3, 240 15"></path>
-        </svg>
-        <div class="report-loading-ticks" aria-hidden="true">
-          <span></span><span></span><span></span><span></span><span></span><span></span>
-        </div>
-        <div class="report-loading-text"></div>
       </div>`;
     document.body.appendChild(el);
   }
-  const textEl = el.querySelector('.report-loading-text');
-  if (textEl) textEl.textContent = text || '数据加载中，请稍候...';
+  updateReportLoadingStatus();
 }
 
 function clearReportLoading() {
   const el = document.getElementById('report-loading-state');
   if (el) el.remove();
+  document.body.style.overflow = reportDataState.bodyOverflow || '';
 }
 
 async function fetchReportJson(path) {
@@ -724,6 +757,9 @@ async function loadReportManifest() {
   allData.period_range = manifest.period_range || {};
   plazaNames = manifest.plaza_names || [];
   cityNames = manifest.city_names || [];
+  reportDataState.progress.totalCities = cityNames.length;
+  reportDataState.progress.totalPlazas = plazaNames.length;
+  updateReportLoadingStatus();
   allData.cities = {};
   Object.entries(manifest.city_stubs || {}).forEach(([city, stub]) => {
     allData.cities[city] = { ...stub, __loaded: false };
@@ -740,6 +776,8 @@ async function loadNorthData() {
   allData.north = core.north || {};
   allData.north.multi_store_brands = brands.multi_store_brands || [];
   allData.daily_benchmarks = core.daily_benchmarks || {};
+  reportDataState.progress.northReady = true;
+  updateReportLoadingStatus();
 }
 
 async function ensureCityLoaded(cityName) {
@@ -751,6 +789,8 @@ async function ensureCityLoaded(cityName) {
   if (!path) throw new Error('未找到城市公司数据：' + cityName);
   reportDataState.loading['city:' + cityName] = fetchReportJson(path).then(data => {
     allData.cities[cityName] = { ...data, __loaded: true };
+    reportDataState.progress.loadedCities = Math.min(reportDataState.progress.totalCities, reportDataState.progress.loadedCities + 1);
+    updateReportLoadingStatus();
     return allData.cities[cityName];
   });
   return reportDataState.loading['city:' + cityName];
@@ -765,6 +805,8 @@ async function ensurePlazaLoaded(plazaName) {
   if (!path) throw new Error('未找到广场数据：' + plazaName);
   reportDataState.loading['plaza:' + plazaName] = fetchReportJson(path).then(data => {
     allData.plazas[plazaName] = { ...data, __loaded: true };
+    reportDataState.progress.loadedPlazas = Math.min(reportDataState.progress.totalPlazas, reportDataState.progress.loadedPlazas + 1);
+    updateReportLoadingStatus();
     return allData.plazas[plazaName];
   });
   return reportDataState.loading['plaza:' + plazaName];
@@ -791,19 +833,19 @@ function preloadReportData() {
 async function initSplitReport() {
   try {
     initNavEvents();
-    setReportLoading('数据加载中，请稍候...');
+    setReportLoading();
     const minLoadingTime = delay(2000);
     await loadReportManifest();
-    setReportLoading('正在加载北区核心数据...');
     await loadNorthData();
     initOverview();
     initCompareSelects();
-    setReportLoading('正在同步城市公司与广场数据...');
     await Promise.all([minLoadingTime, preloadReportData()]);
     clearReportLoading();
   } catch (err) {
     console.error(err);
-    setReportLoading('数据加载失败。请确认已通过 Cloudflare Pages 或本地 Web 服务打开 index.html，不要直接用 file:// 打开。');
+    setReportLoading();
+    const north = document.getElementById('report-loading-north');
+    if (north) north.textContent = '加载失败';
   }
 }
 
